@@ -11,18 +11,12 @@ class Operacion {
 }
 
 function verHistorialFiltrado() {
-    let filtroMoneda = prompt("Ingrese el tipo de operación que desea ver (dolares o euros):").toLowerCase();
-    let mensaje = "";
-
-    historial.forEach((el) => {
-        if (el.operacion.toLowerCase() === filtroMoneda) {
-            mensaje = mensaje + el.mensaje + "\n";
-        }
-    });
-
-    if (mensaje === "") {
+    let filtroMoneda = prompt("Ingrese (dolares o euros) para ver el historial de dicha moneda: ").toLowerCase();
+    let operacionesFiltradas = historial.filter((el) => el.operacion.toLowerCase() === filtroMoneda);
+    if (operacionesFiltradas.length === 0) {
         alert(`No hay operaciones registradas para ${filtroMoneda}.`);
     } else {
+        let mensaje = operacionesFiltradas.map((el) => el.mensaje).join("\n");
         alert(mensaje);
     }
 }
