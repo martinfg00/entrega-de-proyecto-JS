@@ -1,28 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Convertidor de divisas</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./assets/img/logo.png">
+    <!-- Boostrap 5 | css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Font awesome | css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- AOS animation | css  -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
+
 <body>
+    <!-- navbar -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="">Inicio</a></li>
-                <li><a href="">Inicio</a></li>
-                <li><a href="">Inicio</a></li>
-                <li><a href="">Inicio</a></li>
-            </ul>
+        <nav class="navbar fixed-top navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="./assets/img/logo.png" height="47px" alt="">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class=" gap-3 navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                                <li><a class="dropdown-item" href="#divisa">Convertidor de divisas</a></li>
+                                <li><a class="dropdown-item" href="#historial">Historial de divisas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-none d-sm-block">
+                        <span class="navbar-text">
+                        </span>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
-    <main>
-
+    <main id="divisa" class="container-md d-flex align-items-center gap-3">
+        <div>
+            <h1 class="fa-solid" style="color: #ffffff;">Conversor</h1>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" id="valor" min="1" max="100000" class="form-control">
+            <span class="input-group-text">Pesos</span>
+            <input class="input-group-text btn btn-success" type="button" id="cotizador" value="Cotizar">
+        </div>
+        <div>
+            <input type="radio" name="cambio" id="uno"> USD
+            <input type="radio" name="cambio" id="dos"> EUR
+        </div>
+        <span id="remplazar" class="input-group-text btn btn-danger">Pesos a convertidos: $0</span>
     </main>
     <footer>
-        
+        <ul class="list-group">
+            <li id="historial" class="list-group-item active d-flex justify-content-center" aria-current="true">Historial</li>
+            <li id="1" class="list-group-item">Historial vacio esperando por una nueva operacion...</li>
+        </ul>
     </footer>
-    <script src="./js/index.js"></script>
+    <!-- Boostrap 5 | js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- AOS animation | js  -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="module" src="./Javascript/index.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
+
 </html>
