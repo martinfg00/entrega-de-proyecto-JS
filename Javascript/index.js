@@ -7,14 +7,17 @@ const divisaConvertida = document.getElementById("remplazar");
 const historial = [];
 
 cotizar.addEventListener("click", () => {
-    const cantidad = parseFloat(localStorage.getItem("cantidad")) || 0; 
+    const cantidad = parseFloat(cantidadDivisa.value) || 0; 
+    localStorage.setItem("cantidad", cantidad);
+
     let divisaActual;
 
     if (usd.checked || eur.checked) {
         divisaActual = usd.checked ? "usd" : "eur";
-        conversor(parseFloat(cantidad), usd.checked, eur.checked, divisaActual);
+        conversor(cantidad, usd.checked, eur.checked, divisaActual);
     }
 });
+
 
 function conversor(cantidadDivisa, usd, eur, divisaEleguida) {
     let resultado;
