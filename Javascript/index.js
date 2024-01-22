@@ -7,7 +7,7 @@ const divisaConvertida = document.getElementById("remplazar");
 const historial = [];
 
 cotizar.addEventListener("click", () => {
-    const cantidad = parseFloat(localStorage.getItem("namber")) || 0;
+    const cantidad = parseFloat(localStorage.getItem("cantidad")) || 0; 
     let divisaActual;
 
     if (usd.checked || eur.checked) {
@@ -33,11 +33,12 @@ function conversor(cantidadDivisa, usd, eur, divisaEleguida) {
                 }
                 break;
             default:
-                divisaConvertida.innerText = `Moneda no valida.`;
+                divisaConvertida.innerText = `Moneda no válida.`;
                 break;
         }
         historial.push({ cantidadDivisa, divisaEleguida, resultado });
         historial1.innerText = `La divisa fue de: $${cantidadDivisa} en la moneda: ${divisaEleguida} Resultado: $${resultado} ${divisaEleguida}`;
     } 
 }
+
 
