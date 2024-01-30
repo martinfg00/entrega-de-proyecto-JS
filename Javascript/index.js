@@ -89,7 +89,7 @@ function conversor(cantidadDivisa, divisaElegida, divisaElegidaDos) {
         const imgDivisaElegidaDos = `<img src="${imagenDivisaElegidaDos}" alt="${divisaElegidaDos}" width="50">`;
         divisaConvertida.innerHTML = `<span class="input-group-text btn btn-success">Convertidos: $${cantidadDivisa} ${divisaElegida} ${imgDivisaElegida} a $${resultado.toFixed(2)} ${divisaElegidaDos} ${imgDivisaElegidaDos}</span>`;
         const today = new Date();
-        const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+        const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()} Hora: ${today.getHours()}:${today.getMinutes()}`;
         const nuevoHistorial = document.createElement('div');
         nuevoHistorial.innerHTML = `<li class="list-group-item h4">La divisa fue de: $${cantidadDivisa} en la moneda ${divisaElegida} ${imgDivisaElegida}  Resultado: $${resultado.toFixed(2)} ${divisaElegidaDos} ${imgDivisaElegidaDos} <span class="btn btn-info"> Fecha de conversión: ${formattedDate}</span></li>`;
         if (historial1.children.length >= 5) {
