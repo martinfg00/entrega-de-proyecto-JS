@@ -1,6 +1,7 @@
 // ---------------------------------------------------------------
 
 
+let historial = JSON.parse(localStorage.getItem("historial")) || [];
 const cantidadDivisa = document.querySelector("#valor");
 const cotizar = document.querySelector("#cotizar");
 const divisaConvertida = document.getElementById("resultado");
@@ -9,7 +10,8 @@ const clearHistorial = document.querySelector("#clearHistorial");
 const invercambioDeMoneda = document.querySelector("#invercambioDeMoneda");
 const cambio = document.querySelector("#cambio");
 const cambioDos = document.querySelector("#cambioDos");
-const actualizacionDeDivisas = document.querySelector("#actualizacionDeDivisas")
+const actualizacionDeDivisas = document.querySelector("#actualizacionDeDivisas");
+
 
 const imagenesDivisas = {
     usd: 'assets/img/paises/usa.png',
@@ -99,15 +101,47 @@ function conversor(cantidadDivisa, divisaElegida, divisaElegidaDos) {
         divisaConvertida.innerHTML = `<span class="input-group-text btn btn-success">Convertidos: $${cantidadDivisa} ${divisaElegida} ${imgDivisaElegida} a $${resultado.toFixed(2)} ${divisaElegidaDos} ${imgDivisaElegidaDos}</span>`;
         const today = new Date();
         const formattedDate = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()} Hora: ${today.getHours()}:${today.getMinutes()}`;
+
+
         const nuevoHistorial = document.createElement('div');
         nuevoHistorial.innerHTML = `<li class="list-group-item h4">La divisa fue de: $${cantidadDivisa} en la moneda ${divisaElegida} ${imgDivisaElegida}  Resultado: $${resultado.toFixed(2)} ${divisaElegidaDos} ${imgDivisaElegidaDos} <span class="btn btn-info"> Fecha de conversión: ${formattedDate}</span></li>`;
         if (historial1.children.length >= 5) {
             historial1.removeChild(historial1.children[0]);
         }
         historial1.appendChild(nuevoHistorial);
+        function agregarAlHistorial(nuevaEntrada) {
+            historial.push(nuevaEntrada);
+            localStorage.setItem("historial", JSON.stringify(historial));
+        }
+        const nuevaEntrada = {
+            cantidadDivisa,
+            divisaElegida,
+            divisaElegidaDos,
+            resultado: resultado,
+            formattedDate,
+            imgDivisaElegida,
+            imgDivisaElegidaDos
+        };
+        agregarAlHistorial(nuevaEntrada);
     }
 }
 
+window.addEventListener('load', () => {
+    historial = JSON.parse(localStorage.getItem("historial")) || [];
+    historial.forEach(entrada => {
+        const nuevoHistorial = document.createElement('div');
+        nuevoHistorial.innerHTML = `<li class="list-group-item h4">La divisa fue de: $${entrada.cantidadDivisa} en la moneda ${entrada.divisaElegida} ${entrada.imgDivisaElegida}  Resultado: $${entrada.resultado} ${entrada.divisaElegidaDos} ${entrada.imgDivisaElegidaDos} <span class="btn btn-info"> Fecha de conversión: ${entrada.formattedDate}</span></li>`;
+        historial1.appendChild(nuevoHistorial);
+        if (historial1.children.length >= 5) {
+            historial1.removeChild(historial1.children[0]);
+        }
+        historial1.appendChild(nuevoHistorial);
+        function agregarAlHistorial(nuevaEntrada) {
+            historial.push(nuevaEntrada);
+            localStorage.setItem("historial", JSON.stringify(historial));
+        }
+    });
+});
 
 
 // ---------------------------------------------------------------
